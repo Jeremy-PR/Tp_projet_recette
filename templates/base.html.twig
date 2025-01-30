@@ -12,6 +12,20 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header class="main-header">
+            <nav class="nav-container">
+                <div class="logo">
+                    <a href="{{ path('app_recette_index') }}">La Cuisine de Jé</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="{{ path('app_recette_index') }}">Recettes</a></li>
+                    <li><a href="{{ path('app_recette_new') }}">Créer une recette</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            {% block body %}{% endblock %}
+        </main>
     </body>
 </html>

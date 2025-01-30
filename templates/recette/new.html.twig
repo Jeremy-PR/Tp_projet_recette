@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Recette{% endblock %}
+
+{% block body %}
+<section class ="container">
+    <h1 class = "main-title">Créez une nouvelle recette</h1>
+
+
+<div class = "formstyle">
+    {{ include('recette/_form.html.twig') }}
+</div>
+
+
+  <a href="{{ path('app_recette_index') }}">back to list</a>
+
+
+
+</section>
+
+
+
+  
+{% endblock %}

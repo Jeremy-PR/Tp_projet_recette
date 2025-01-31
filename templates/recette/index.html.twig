@@ -1,52 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recette index{% endblock %}
-
+{# {% block title %}Hello RecipeController!
+{% endblock %} #}
 {% block body %}
-<section class="all-recette">
-    <div class="container">
-        <h2 class="title">Liste des Recettes</h2>
 
-        <div class="recipes-container">
-            {% for recette in recettes %}
-                <div class="recette-card">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nom</th>
-                                <th>Créé le</th>
-                                <th>Description</th>
-                                <th>Slug</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{ recette.id }}</td>
-                                <td>{{ recette.name }}</td>
-                                <td>{{ recette.createdAt ? recette.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                                <td>{{ recette.descrition }}</td>
-                                <td>{{ recette.slug }}</td>
-                                <td class="actions">
-                                    <a href="{{ path('app_recette_show', {'id': recette.id}) }}" class="btn btn-show">Voir</a>
-                                    <a href="{{ path('app_recette_edit', {'id': recette.id}) }}" class="btn btn-edit">Modifier</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            {% else %}
-                <p>Aucune recette trouvée</p>
-            {% endfor %}
-        </div>
 
-        <div class="spacer"></div>
+	<section id="allRecette">
+		{% for recette in recettes %}
+			<article>
+				<h3>{{recette.name}}</h3>
+				<p>Categorie :
+					{{recette.categorie}}
+				</p>
+				<a href="{{path('app_recette', {id: recette.id})}}">Voir détails</a>
+			</article>
+		{% endfor %}
+	</section>
 
-        <!-- Section pour le bouton de création -->
-        <div class="create-section">
-            <a href="{{ path('app_recette_new') }}" class="btn_show">Créer une nouvelle recette</a>
-        </div>
-    </div>
-</section>
+	<a href="{{path('app_recette_create')}}">Ajouter une recette</a>
+
 {% endblock %}

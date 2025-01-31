@@ -1,41 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recette{% endblock %}
+{% block title %}Hello RecipeController!
+{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1 class="title">Recette</h1>
 
-        <div class="table-container">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <th>Id</th>
-                        <td>{{ recette.id }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nom</th>
-                        <td>{{ recette.name }}</td>
-                    </tr>
-                    <tr>
-                        <th>Créé le</th>
-                        <td>{{ recette.createdAt ? recette.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                    </tr>
-                    <tr>
-                        <th>Description</th>
-                        <td>{{ recette.descrition }}</td>
-                    </tr>
-                    <tr>
-                        <th>Slug</th>
-                        <td>{{ recette.slug }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
-        <a href="{{ path('app_recette_index') }}" class="btn btn-back">Retour à la liste</a>
-        <a href="{{ path('app_recette_edit', {'id': recette.id}) }}" class="btn btn-edit">Modifier</a>
+	<p id="titreRecette">{{recette.name}}</p>
+	<p>Categorie :{{recette.categorie}}</p>
 
-        {{ include('recette/_delete_form.html.twig') }}
-    </div>
+	<div id="recetteInfos">
+		<a href="{{path('app_recette_delete', {id: recette.id})}}">Supprimer</a>
+		<a href="{{path('app_recette_update', {id: recette.id})}}">Modifier</a>
+		<a href="{{path('app_recipe_all')}}">Retour à l'accueil</a>
+	</div>
+
+
 {% endblock %}

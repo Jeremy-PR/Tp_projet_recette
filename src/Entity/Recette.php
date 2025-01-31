@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\RecetteRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RecetteRepository::class)]
@@ -17,14 +16,21 @@ class Recette
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $descrition = null;
+    #[ORM\ManyToOne(inversedBy: 'recettes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Categorie $categorie = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $slug = null;
+
+public function __construct()
+{
+    $this->created_at = new \DateTimeImmutable();
+}
 
     public function getId(): ?int
     {
@@ -43,6 +49,18 @@ class Recette
         return $this;
     }
 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;
@@ -55,26 +73,14 @@ class Recette
         return $this;
     }
 
-    public function getDescrition(): ?string
+    public function getCategorie(): ?Categorie
     {
-        return $this->descrition;
+        return $this->categorie;
     }
 
-    public function setDescrition(string $descrition): static
+    public function setCategorie(?Categorie $categorie): static
     {
-        $this->descrition = $descrition;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): static
-    {
-        $this->slug = $slug;
+        $this->categorie = $categorie;
 
         return $this;
     }

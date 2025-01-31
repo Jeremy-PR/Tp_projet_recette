@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RecipeController!
+{% endblock %}
+
+{# {% block stylesheets %}
+{# <link rel="stylesheet" href="{{ asset('styles/test.css')}}"> #}
+{# {% endblock %} #}
+
+{% block body %}
+
+	{# <p class="red"> test </p> #}
+
+	{# <img src="{{asset('images/test.jpg')}}" alt="test"> #}
+
+
+		<section>
+
+		{# {{ form(recipeForm) }} #}
+
+		{{ form_start(recetteForm, {
+	'attr' : {
+		'id': 'recetteForm',
+		'class' : 'form-horizontal'
+	}
+}) }}
+
+			<div class="testo"> {{form_label(recetteForm.name)}}
+			{{form_widget(recetteForm.name)}}
+		</div>
+
+		<div class="testo">
+			{{form_label(recetteForm.slug)}}
+			{{form_widget(recetteForm.slug)}}
+		</div>
+
+		<div class="testo">
+			{{form_label(recetteForm.categorie)}}
+			{{form_widget(recetteForm.categorie)}}
+		</div>
+<button type="submit" class="btn-submit">
+            <i class="ion-plus-circled"></i>
+            Ajouter
+        </button>
+
+		{{ form_end(recetteForm) }}
+
+
+	</section>
+{% endblock %}
+

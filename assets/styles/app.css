@@ -17,27 +17,74 @@ body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-  
     margin: 0;
     padding: 0;
 }
 
-/* Header styles */
-.main-header {
-    background-color: var(--primary-color);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
+/* Navigation styles */
 .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 3rem;
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-btn {
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: white;
+    border: 1px solid transparent;
+}
+
+.nav-btn:hover {
+    background-color: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.3);
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+}
+
+.logout-btn {
+    background-color: var(--secondary-color);
+}
+
+.login-btn, .register-btn {
+    background-color: transparent;
+    border: 2px solid white;
+}
+
+.login-btn:hover, .register-btn:hover {
+    background-color: white;
+    color: var(--primary-color);
 }
 
 .logo a {
@@ -46,25 +93,6 @@ body {
     font-weight: 700;
     text-decoration: none;
     letter-spacing: 1px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: var(--secondary-color);
 }
 
 main {
@@ -88,173 +116,225 @@ main {
     padding-bottom: 1rem;
 }
 
-/* Cartes de recettes */
-.recipes-container {
+/* Pages de recettes */
+#allRecette {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+#allRecette article {
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    margin-top: 2rem;
 }
 
-.recette-card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease;
-    overflow: hidden;
-    width: 100%;
+#allRecette article:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-.recette-card:hover {
-    transform: translateY(-5px);
-}
-
-/* Tables */
-.table {
-    width: 100%;
-    border-collapse: collapse;
+#allRecette article h3 {
     margin-bottom: 1rem;
-    background: white;
+    color: var(--primary-color);
 }
 
-.table th, .table td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
+#allRecette article p {
+    margin-bottom: 1rem;
+    flex-grow: 1;
 }
 
-.table th {
-    background-color: var(--primary-color);
-    color: white;
-    font-weight: 600;
-}
-
-.table tr:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.02);
-}
-
-/* Boutons */
-.btn, .btn-show, .btn-edit, .btn-back, .btn_show {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    border-radius: 4px;
+#allRecette article a {
+    align-self: flex-end;
     text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    margin: 0.5rem;
-}
-
-.btn-show {
+    padding: 0.5rem 1rem;
     background-color: var(--primary-color);
     color: white;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
 }
 
-.btn-edit {
+#allRecette article a:hover {
     background-color: var(--secondary-color);
-    color: white;
 }
 
-.btn-back {
-    background-color: #95a5a6;
-    color: white;
-}
-
-.btn_show {
-    background-color: var(--success-color);
-    color: white;
-    font-size: 1.1rem;
-    padding: 1rem 2rem;
-}
-
-.btn:hover, .btn-show:hover, .btn-edit:hover, .btn-back:hover, .btn_show:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-}
-
-/* Formulaires */
-.form-container, .formstyle {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.form-wrapper {
+#titreRecette {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-align: center;
     margin-bottom: 2rem;
 }
 
-/* Champs de formulaire */
-input[type="text"],
-input[type="email"],
-textarea,
-select {
-    width: 100%;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-size: 1rem;
+#recetteInfos {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
 }
 
-/* Section de création */
-.create-section {
-    text-align: center;
-    margin-top: 3rem;
-    padding: 2rem;
+#recetteInfos a {
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    color: white;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+#recetteInfos a:nth-child(1) {
+    background-color: var(--secondary-color);
+}
+
+#recetteInfos a:nth-child(2) {
+    background-color: var(--primary-color);
+}
+
+#recetteInfos a:nth-child(3) {
+    background-color: #95a5a6;
+}
+
+#recetteInfos a:hover {
+    transform: scale(1.05);
+}
+
+/* Formulaires de recettes */
+#recetteForm {
+    max-width: 600px;
+    margin: 2rem auto;
     background: white;
+    padding: 2rem;
     border-radius: 8px;
     box-shadow: var(--shadow);
 }
 
-/* Espacement */
-.spacer {
-    height: 2rem;
-}
-
-/* Messages d'erreur et de succès */
-.alert {
-    padding: 1rem;
-    border-radius: 4px;
+.testo {
     margin-bottom: 1rem;
 }
 
-.alert-success {
+.testo label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.testo input, 
+.testo select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.testo input:focus,
+.testo select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 1rem;
     background-color: var(--success-color);
     color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
+
+/* Login et Registration */
+.login-container, .registration-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.login-container form, .registration-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container label, .registration-container label {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.login-container input, .registration-container input {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.login-container input:focus, 
+.registration-container input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.login-container .btn, .registration-container .btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.login-container .btn:hover, 
+.registration-container .btn:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .container {
-        padding: 1rem;
-    }
-
-    .title, .main-title, .edit-title {
-        font-size: 2rem;
-    }
-
-    .table-container {
-        overflow-x: auto;
-    }
-
-    .btn, .btn-show, .btn-edit, .btn-back {
-        display: block;
-        margin: 0.5rem 0;
-        text-align: center;
-    }
-
     .nav-container {
         flex-direction: column;
         padding: 1rem;
-        gap: 1rem;
+    }
+
+    .nav-right {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
     }
 
     .nav-links {
-        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
 
+    .nav-btn {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .user-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #allRecette {
+        grid-template-columns: 1fr;
+    }
 }

@@ -1,35 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}Liste des Catégories{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
+    <div class="container">
+        <h1 class="main-title">Liste des Catégories</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for categorie in categories %}
-            <tr>
-                <td>{{ categorie.id }}</td>
-                <td>{{ categorie.name }}</td>
-                <td>
-                    <a href="{{ path('app_categorie_show', {'id': categorie.id}) }}">show</a>
-                    <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for categorie in categories %}
+                    <tr>
+                        <td>{{ categorie.id }}</td>
+                        <td>{{ categorie.name }}</td>
+                        <td class="actions">
+                            <a href="{{ path('app_categorie_show', {'id': categorie.id}) }}" class="btn-show">Voir</a>
+                            <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}" class="btn-edit">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="no-records">Aucun enregistrement trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-    <a href="{{ path('app_categorie_new') }}">Create new</a>
+        <div class="create-section">
+            <a href="{{ path('app_categorie_new') }}" class="btn-submit">Créer une nouvelle catégorie</a>
+        </div>
+    </div>
 {% endblock %}

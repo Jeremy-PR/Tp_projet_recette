@@ -5,6 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
@@ -15,19 +16,27 @@
         <header class="main-header">
             <nav class="nav-container">
                 <div class="logo">
-                    <a href="{{ path('app_categorie_index') }}">La Cuisine de Jé</a>
+                    <a href="{{ path('app_recette_all') }}">La Cuisine de Jé</a>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="{{ path('app_categorie_index') }}">Recettes</a></li>
-                    <li><a href="{{ path('app_categorie_index') }}">Créer une recette</a></li>
-                </ul>
-                	{% if app.user %}
-			<p>Kikou {{app.user.pseudo}}</p>
-			<a href="{{ path('app_logout')}}">Déconnecte toi BB</a>
-			{% else %}
-			<a href="{{ path('app_login')}}">Connecte toi bébé</a>
-			<a href="{{ path('app_register')}}">Inscris toi bébé</a>
-			{% endif %}
+                <div class="nav-right">
+                    <ul class="nav-links">
+                        {# <li><a href="{{ path('app_recette') }}" class="nav-btn">Recettes</a></li> #}
+                        <li><a href="{{ path('app_recette_create') }}" class="nav-btn">Créer une recette</a></li>
+                    </ul>
+                    <div class="user-actions">
+                        {% if app.user %}
+                            <div class="user-info">
+                                <span>Kikou {{app.user.pseudo}}</span>
+                                <a href="{{ path('app_logout') }}" class="nav-btn logout-btn">Déconnexion</a>
+                            </div>
+                        {% else %}
+                            <div class="auth-btns">
+                                <a href="{{ path('app_login') }}" class="nav-btn login-btn">Connexion</a>
+                                <a href="{{ path('app_register') }}" class="nav-btn register-btn">Inscription</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
             </nav>
         </header>
 

@@ -42,6 +42,18 @@ class RecetteType extends AbstractType
         ])
         
 
+   
+        ->add('description', TextType::class, [
+            'attr' => [
+                'class' => 'form-control mb-3', 
+            ],
+            'label' => "Description de la recette :",
+            'label_attr' => [
+                'class' => 'form-label',  
+            ]
+        ])
+        
+
 
      
        

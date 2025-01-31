@@ -23,6 +23,8 @@ class RecetteCrudController extends AbstractCrudController
        
             TextField::new('name'),
             TextField::new('slug'),
+            TextField::new('description'),
+
 
             AssociationField::new('categorie')->autocomplete(),
         ];

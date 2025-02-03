@@ -9,7 +9,7 @@
 	<p id="titreRecette">{{recette.name}}</p>
 	<p id="titreRecette">{{recette.description}}</p>
 	<p id="titreRecette">Categorie {{recette.categorie}}</p>
-
+<img src="{{ vich_uploader_asset(recette, 'thumbnailFile') }}" alt="">
 
 	<div id="recetteInfos">
 		<a href="{{path('app_recette_delete', {id: recette.id})}}">Supprimer</a>

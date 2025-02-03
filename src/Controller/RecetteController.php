@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Routing\Attribute\Route;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 final class RecetteController extends AbstractController
 {
@@ -56,9 +57,10 @@ final class RecetteController extends AbstractController
 
 
     #[Route('/recette/update/{id}', name: 'app_recette_update')]
-    public function update(int $id, Request $request, EntityManagerInterface $entityManager, RecetteRepository $recetteRepository): Response
+    public function update(int $id, Request $request, EntityManagerInterface $entityManager, RecetteRepository $recetteRepository, UploaderHelper $helper): Response
     {
 
+ 
         $recette = $recetteRepository->find($id);
 
         $recetteForm = $this->createForm(RecetteType::class, $recette);
@@ -141,7 +143,7 @@ final class RecetteController extends AbstractController
         $entityManager->remove($recette);
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_recipe_all');
+        return $this->redirectToRoute('app_recette_all');
     }
 
   

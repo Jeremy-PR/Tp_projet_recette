@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Recette;
 use App\Form\RecetteType;
-use App\Form\RecipeType;
 use App\Repository\RecetteRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -38,6 +37,7 @@ final class RecetteController extends AbstractController
         $recetteForm->handleRequest($request);
 
         if ($recetteForm->isSubmitted() && $recetteForm->isValid()) {
+    $recette->setAuteur(($this->getUser()));
             // dd($recipe);
             $entityManager->persist($recette);
             $entityManager->flush();
@@ -47,7 +47,7 @@ final class RecetteController extends AbstractController
         }
 
         return $this->render('recette/create.html.twig', [
-            'recetteForm' => $recetteForm->createView(),
+            'recetteForm' => $recetteForm,
         ]);
 
     }
@@ -65,7 +65,21 @@ final class RecetteController extends AbstractController
         $recetteForm->handleRequest($request);
 
         if ($recetteForm->isSubmitted() && $recetteForm->isValid()) {
-            // dd($recipe);
+
+
+// Cette logique est par la suite gérée par le bundle VichUploaderBundle. Pour plus d'informations, consultez la documentation officielle du bundle.
+            // /**@var UploadedFile $file */
+            // $file = $recetteForm->get('thumbnailFile')->getData();
+            // $filename = $recette->getId() . '.' . $file->getClientOriginalExtension();
+            // $file->move($this->getParameter('kernel.project_dir') . '/public/recettes/images', $filename);
+            // $recette->setThumbnail($filename);
+
+            // dd($recette);
+
+
+            $this->addFlash(('success'), 'Recette modifiée avec succès');
+        
+      
             $entityManager->persist($recette);
             $entityManager->flush();
 

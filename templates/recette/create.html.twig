@@ -34,24 +34,29 @@
 			{{form_widget(recetteForm.slug)}}
 		</div>
 
-			<div class="testo">
+		<div class="testo">
 			{{form_label(recetteForm.description)}}
 			{{form_widget(recetteForm.description)}}
-		
+
 		</div>
 
 		<div class="testo">
 			{{form_label(recetteForm.categorie)}}
 			{{form_widget(recetteForm.categorie)}}
 		</div>
-<button type="submit" class="btn-submit">
-            <i class="ion-plus-circled"></i>
-            Ajouter
-        </button>
+
+		<div class="testo">
+			{{form_label(recetteForm.thumbnailFile)}}
+			{{form_widget(recetteForm.thumbnailFile)}}
+		</div>
+
+		<button type="submit" class="btn-submit">
+			<i class="ion-plus-circled"></i>
+			Ajouter
+		</button>
 
 		{{ form_end(recetteForm) }}
 
 
 	</section>
 {% endblock %}
-

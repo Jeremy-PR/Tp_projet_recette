@@ -7,7 +7,9 @@
 
 
 	<p id="titreRecette">{{recette.name}}</p>
-	<p>Categorie :{{recette.categorie}}</p>
+	<p id="titreRecette">{{recette.description}}</p>
+	<p id="titreRecette">Categorie {{recette.categorie}}</p>
+
 
 	<div id="recetteInfos">
 		<a href="{{path('app_recette_delete', {id: recette.id})}}">Supprimer</a>

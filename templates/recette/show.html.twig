@@ -6,10 +6,10 @@
 {% block body %}
 
 
-	<p id="titreRecette">{{recette.name}}</p>
-	<p id="titreRecette">{{recette.description}}</p>
-	<p id="titreRecette">Categorie {{recette.categorie}}</p>
-<img src="{{ vich_uploader_asset(recette, 'thumbnailFile') }}" alt="">
+	<p id="titreRecette">Nom de la recette : {{recette.name}}</p>
+	<p id="descriptionRecette">Description : {{recette.description}}</p>
+	<p id="categorieRecette">Categorie : {{recette.categorie}}</p>
+<img id="imageRecette" src="{{ vich_uploader_asset(recette, 'thumbnailFile') }}" alt="">
 
 	<div id="recetteInfos">
 		<a href="{{path('app_recette_delete', {id: recette.id})}}">Supprimer</a>

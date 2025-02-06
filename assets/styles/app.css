@@ -373,3 +373,15 @@ main {
         grid-template-columns: 1fr;
     }
 }
+
+#register{
+    margin-top: 2rem;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    color: black;
+    text-align: center;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content:center;
+    font-weight: bolder;
+}

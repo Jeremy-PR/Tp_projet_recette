@@ -1,5 +1,8 @@
-Email: Courriel
-InscriptionForm:
-pseudo: Alias
-Password: Mot de passe
-Register: S'inscrire
+# Email: Courriel
+
+# registrationForm:
+#  email: Courriel
+#  pseudo: Alias
+
+
+# Welcome: Bienvenue

@@ -16,10 +16,15 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 final class RecetteController extends AbstractController
 {
+   
+   
+   
+   
     #[Route('/', name: 'app_recette_all')]
     public function index(RecetteRepository $recetteRepository): Response
     {
-
+        // TranslatorInterface $translator
+        // dd($translator->trans('Welcome')); 
         $recette = $recetteRepository->findAll();
 
         return $this->render('recette/index.html.twig', [
@@ -28,6 +33,21 @@ final class RecetteController extends AbstractController
     }
 
 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
     #[Route('/recette/create', name: 'app_recette_create')]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -38,19 +58,18 @@ final class RecetteController extends AbstractController
         $recetteForm->handleRequest($request);
 
         if ($recetteForm->isSubmitted() && $recetteForm->isValid()) {
-    $recette->setAuteur(($this->getUser()));
+            $recette->setAuteur(($this->getUser()));
             // dd($recipe);
             $entityManager->persist($recette);
             $entityManager->flush();
 
 
-           return $this->redirectToRoute('app_recette_all');
+            return $this->redirectToRoute('app_recette_all');
         }
 
         return $this->render('recette/create.html.twig', [
             'recetteForm' => $recetteForm,
         ]);
-
     }
 
 
@@ -60,7 +79,7 @@ final class RecetteController extends AbstractController
     public function update(int $id, Request $request, EntityManagerInterface $entityManager, RecetteRepository $recetteRepository, UploaderHelper $helper): Response
     {
 
- 
+
         $recette = $recetteRepository->find($id);
 
         $recetteForm = $this->createForm(RecetteType::class, $recette);
@@ -69,7 +88,7 @@ final class RecetteController extends AbstractController
         if ($recetteForm->isSubmitted() && $recetteForm->isValid()) {
 
 
-// Cette logique est par la suite gérée par le bundle VichUploaderBundle. Pour plus d'informations, consultez la documentation officielle du bundle.
+            // Cette logique est par la suite gérée par le bundle VichUploaderBundle. Pour plus d'informations, consultez la documentation officielle du bundle.
             // /**@var UploadedFile $file */
             // $file = $recetteForm->get('thumbnailFile')->getData();
             // $filename = $recette->getId() . '.' . $file->getClientOriginalExtension();
@@ -80,20 +99,19 @@ final class RecetteController extends AbstractController
 
 
             $this->addFlash(('success'), 'Recette modifiée avec succès');
-        
-      
+
+
             $entityManager->persist($recette);
             $entityManager->flush();
 
 
-           return $this->redirectToRoute('app_recette_all');
+            return $this->redirectToRoute('app_recette_all');
         }
 
         return $this->render('recette/update.html.twig', [
             'recetteForm' => $recetteForm,
             'recette' => $recette,
         ]);
-
     }
 
 
@@ -145,10 +163,4 @@ final class RecetteController extends AbstractController
 
         return $this->redirectToRoute('app_recette_all');
     }
-
-  
-
-
-
 }
-

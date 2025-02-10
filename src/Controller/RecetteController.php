@@ -19,16 +19,25 @@ final class RecetteController extends AbstractController
    
    
    
+    // #[Route('/', name: 'app_recette_all')]
+    // public function index(RecetteRepository $recetteRepository): Response
+    // {
+    //     // TranslatorInterface $translator
+    //     // dd($translator->trans('Welcome')); 
+    //     $recette = $recetteRepository->findAll();
+
+    //     return $this->render('recette/index.html.twig', [
+    //         'recettes' => $recette,
+    //     ]);
+    // }
    
-    #[Route('/', name: 'app_recette_all')]
+    #[Route('/{_locale}/recettes', name: 'app_recette_all', requirements: ['_locale' => 'en|fr'], defaults: ['_locale' => 'fr'])]
     public function index(RecetteRepository $recetteRepository): Response
     {
-        // TranslatorInterface $translator
-        // dd($translator->trans('Welcome')); 
-        $recette = $recetteRepository->findAll();
-
+        $recettes = $recetteRepository->findAll();
+    
         return $this->render('recette/index.html.twig', [
-            'recettes' => $recette,
+            'recettes' => $recettes,
         ]);
     }
 

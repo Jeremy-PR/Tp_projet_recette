@@ -50,6 +50,9 @@ class Recette
     // #[Assert\Image()]
     private ?File $thumbnailFile = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $locale = 'fr';
+
 
 
 
@@ -166,6 +169,18 @@ class Recette
     public function setThumbnailFile($thumbnailFile)
     {
         $this->thumbnailFile = $thumbnailFile;
+
+        return $this;
+    }
+
+    public function getLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(string $locale): static
+    {
+        $this->locale = $locale;
 
         return $this;
     }

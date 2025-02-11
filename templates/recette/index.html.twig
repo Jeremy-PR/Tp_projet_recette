@@ -14,11 +14,12 @@
 
 <div id="titreRecette">
 
-	<a href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}">
-		<img src="/images/flags/en.png" alt="English" width="30" height="20">
-	</a>
+<a href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}">
+    <img src="{{ asset('images/drapeau-anglais-recette.png') }}" alt="English" width="100" height="100">
+</a>
+
 	<a href="{{ path(app.request.attributes.get('_route'), {'_locale': 'fr'}) }}">
-		<img src="/images/flags/fr.png" alt="Français" width="30" height="20">
+		<img src="{{ asset('images/drapeau-français-recette.png') }}" alt="Français" width="100" height="100">
 	</a>
 
 </div>
